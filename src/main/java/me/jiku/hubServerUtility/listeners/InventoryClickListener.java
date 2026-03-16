@@ -2,6 +2,7 @@ package me.jiku.hubServerUtility.listeners;
 
 import me.jiku.hubServerUtility.HubServerUtility;
 import me.jiku.hubServerUtility.utlis.GUIUtils;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,22 +34,16 @@ public class InventoryClickListener implements Listener{
             switch(e.getCurrentItem().getType()){
                 case ENDER_EYE:
                     GUIUtils.openOptionMenu(player);
-                    break;
-            }
-
-        }else if(e.getView().getTitle().equalsIgnoreCase(OPTIONMENU)){
-                switch(e.getCurrentItem().getType()){
-                    case GREEN_CONCRETE:
+                    if(e.getCurrentItem().getType() == Material.GREEN_CONCRETE){
                         GUIUtils.openMainMenu(player);
                         player.sendMessage("Enable");
-                        break;
-                    case RED_CONCRETE:
-
+                    }else{
                         GUIUtils.openMainMenu(player);
                         player.sendMessage("Disable");
-                        break;
+                    }
 
-                }
+                    break;
             }
+        }
     }
 }
