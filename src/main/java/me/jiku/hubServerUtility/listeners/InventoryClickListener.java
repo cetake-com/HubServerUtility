@@ -2,7 +2,6 @@ package me.jiku.hubServerUtility.listeners;
 
 import me.jiku.hubServerUtility.HubServerUtility;
 import me.jiku.hubServerUtility.utlis.GUIUtils;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,28 +21,36 @@ public class InventoryClickListener implements Listener{
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e){
         Player player = (Player) e.getWhoClicked();
-        var currentItemType = e.getCurrentItem().getType();
-        var viewInventoryTitle = e.getView().getTitle();
 
-        if(e.getCurrentItem() != null){
+        e.setCancelled(true);
 
-            if(viewInventoryTitle.equalsIgnoreCase(MAINMENU)){
+        if(e.getCurrentItem().getType() != null && e.getCurrentItem() != null){
 
-                switch(currentItemType){
-                    case ENDER_EYE:
-                        GUIUtils.openMainMenu(player);
-                        if(currentItemType == Material.GREEN_CONCRETE){
+            if(e.getView().getTitle().equalsIgnoreCase(MAINMENU)){
 
-                        }else{
+                    switch(e.getCurrentItem().getType()){
+                        case ENDER_EYE:
 
-                        }
-                        break;
+                            GUIUtils.openOptionMenu(player);
+                            if(e.getView().getTitle().equalsIgnoreCase(OPTIONMENU)){
+                                    switch(e.getCurrentItem().getType()){
+                                        case GREEN_CONCRETE:
+                                            GUIUtils.openMainMenu(player);
+                                            break;
+                                        case RED_CONCRETE:
+                                            GUIUtils.openMainMenu(player);
+                                            break;
+
+
+                                    }
+
+                                break;
+
+                            }
+                    }
                 }
 
             }
 
         }
     }
-
-
-}

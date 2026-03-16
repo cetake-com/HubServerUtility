@@ -1,5 +1,6 @@
 package me.jiku.hubServerUtility.commands;
 
+import me.jiku.hubServerUtility.utlis.GUIUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,6 +13,9 @@ public class HSUCommand implements CommandExecutor{
 
         if(sender instanceof Player player){
 
+            if(args.length == 0){
+                GUIUtils.openMainMenu(player);
+            }
 
         }
 
