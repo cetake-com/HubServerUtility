@@ -1,0 +1,10 @@
+name: HubServerUtility
+version: '1.0-SNAPSHOT'
+main: me.jiku.hubServerUtility.HubServerUtility
+api-version: '1.21'
+commands:
+  hubserverutility:
+    description: Show setting GUI
+    aliases:
+      - hus
+    op: op
