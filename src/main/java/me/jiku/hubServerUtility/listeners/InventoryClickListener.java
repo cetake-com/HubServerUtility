@@ -24,33 +24,31 @@ public class InventoryClickListener implements Listener{
 
         e.setCancelled(true);
 
-        if(e.getCurrentItem().getType() != null && e.getCurrentItem() != null){
+        e.getCurrentItem();
 
-            if(e.getView().getTitle().equalsIgnoreCase(MAINMENU)){
+        if(e.getCurrentItem() != null) return;
 
-                    switch(e.getCurrentItem().getType()){
-                        case ENDER_EYE:
+        if(e.getView().getTitle().equalsIgnoreCase(MAINMENU)){
 
-                            GUIUtils.openOptionMenu(player);
-                            if(e.getView().getTitle().equalsIgnoreCase(OPTIONMENU)){
-                                    switch(e.getCurrentItem().getType()){
-                                        case GREEN_CONCRETE:
-                                            GUIUtils.openMainMenu(player);
-                                            break;
-                                        case RED_CONCRETE:
-                                            GUIUtils.openMainMenu(player);
-                                            break;
-
-
-                                    }
-
-                                break;
-
-                            }
-                    }
-                }
-
+            switch(e.getCurrentItem().getType()){
+                case ENDER_EYE:
+                    GUIUtils.openOptionMenu(player);
+                    break;
             }
 
-        }
+        }else if(e.getView().getTitle().equalsIgnoreCase(OPTIONMENU)){
+                switch(e.getCurrentItem().getType()){
+                    case GREEN_CONCRETE:
+                        GUIUtils.openMainMenu(player);
+                        player.sendMessage("Enable");
+                        break;
+                    case RED_CONCRETE:
+
+                        GUIUtils.openMainMenu(player);
+                        player.sendMessage("Disable");
+                        break;
+
+                }
+            }
     }
+}
