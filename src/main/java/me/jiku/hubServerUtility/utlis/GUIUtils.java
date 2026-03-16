@@ -15,7 +15,7 @@ public class GUIUtils{
 
     public static void openMainMenu(Player player){
 
-        int inventory_size = 36;
+        int inventory_size = 27;
 
         Inventory main_menu = Bukkit.createInventory(player, inventory_size, MAINMENU);
 
