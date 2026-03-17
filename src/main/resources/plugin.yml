@@ -5,6 +5,11 @@ api-version: '1.21'
 commands:
   hubserverutility:
     description: Show setting GUI
+    permission: hubserverutility.op
+    permission-message: You do not have permission to run this command
     aliases:
       - hsu
-    op: op
+permissions:
+  hubserverutility.op:
+    description: This is for op permission
+    default: op
