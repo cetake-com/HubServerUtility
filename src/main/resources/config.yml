@@ -1,4 +1,4 @@
-#Select true or false
+#Select true or false (Default false)
 init-spawn-setting: false
 #coordinate and rotation (float value)
 init-spawn-posX: '0.0'

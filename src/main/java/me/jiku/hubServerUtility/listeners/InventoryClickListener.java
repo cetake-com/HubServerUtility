@@ -27,7 +27,6 @@ public class InventoryClickListener implements Listener{
         Player player = (Player) e.getWhoClicked();
         var config = plugin.getConfig();
 
-
         e.getCurrentItem();
 
         if(e.getCurrentItem() == null) return;
@@ -41,6 +40,7 @@ public class InventoryClickListener implements Listener{
                 case ENDER_EYE:
                     GUIUtils.openOptionMenu(player, Material.ENDER_EYE);
                     break;
+
             }
 
         }else if(e.getView().getTitle().equalsIgnoreCase(OPTIONMENU)){
