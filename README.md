@@ -30,6 +30,7 @@ Hub Serverに必要な機能を揃えていきたいと思います。
 /hsu initialspawn "x" "y" "z" "yaw" "pitch"  
 任意の座標と向きを保存します。  
 
-/hsu initialspawn true  or  /hsu initialspawn false  
+/hsu initialspawn true  
+/hsu initialspawn false  
 初期スポーンポイントの機能の有効、無効をコマンドでも切り替えられます。  
 
