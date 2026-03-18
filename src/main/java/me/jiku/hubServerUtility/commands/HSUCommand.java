@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
 
+import java.util.ArrayList;
+
 public class HSUCommand implements CommandExecutor{
 
     private final HubServerUtility plugin;
@@ -20,7 +22,7 @@ public class HSUCommand implements CommandExecutor{
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String[] args){
 
-        var config = plugin.getConfig();
+        int custom_Spawn_Args_Size = 6;
 
         if(sender instanceof Player player){
 
@@ -30,18 +32,48 @@ public class HSUCommand implements CommandExecutor{
 
             if(args.length == 1){
                 if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
-
                     initialSpawn(player);
-
                 }
+            }else if((args.length == custom_Spawn_Args_Size)){
+
+                    if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
+
+                    ArrayList<Double> coordinateList = new ArrayList<>();
+
+                    for(int i = 1; i < custom_Spawn_Args_Size; i++){
+                        if(canConvertDouble(args[i]) == true){
+                            double value = Double.parseDouble(args[i]);
+                            coordinateList.add(value);
+                        }else if(canConvertDouble(args[i]) == false){
+                            player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
+                            break;
+                        }
+                    }
+
+                    double getX = coordinateList.get(0);
+                    double getY = coordinateList.get(1);
+                    double getZ = coordinateList.get(2);
+                    double yaw = coordinateList.get(3);
+                    double pitch = coordinateList.get(4);
+
+                    double transX = Math.round(getX * 10 ) / 10.0;
+                    double transY = Math.round(getY * 10 ) / 10.0;
+                    double transZ = Math.round(getZ * 10 ) / 10.0;
+                    double transYaw = Math.round(yaw * 10 ) / 10.0;
+                    double transPitch = Math.round(pitch * 10 ) / 10.0;
+
+                    setConfigInitialSpawn(player, transX, transY, transZ, transYaw, transPitch);
+                }else{
+                        player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
+                    }
             }
-        }
+            }
         return true;
-    }
+        }
+
+
 
     public void initialSpawn(Player player){
-
-        var config = plugin.getConfig();
 
         Location loc = player.getLocation();
 
@@ -57,14 +89,32 @@ public class HSUCommand implements CommandExecutor{
         double transYaw = Math.round(getYaw * 10) / 10.0;
         double transPitch = Math.round(getPitch * 10) / 10.0;
 
-        config.set("init-spawn-posX", transX);
-        config.set("init-spawn-posY", transY);
-        config.set("init-spawn-posZ", transZ);
-        config.set("init-spawn-yaw", transYaw);
-        config.set("init-spawn-pitch", transPitch);
+        setConfigInitialSpawn(player, transX, transY, transZ, transYaw, transPitch);
+    }
+
+    public void setConfigInitialSpawn(Player player, double x, double y, double z, double yaw, double pitch){
+
+        var config = plugin.getConfig();
+
+        config.set("init-spawn-posX", x);
+        config.set("init-spawn-posY", y);
+        config.set("init-spawn-posZ", z);
+        config.set("init-spawn-yaw", yaw);
+        config.set("init-spawn-pitch", pitch);
 
         player.sendMessage("Coordinates saved successfully");
 
         plugin.saveConfig();
+    }
+
+    public static boolean canConvertDouble(String string){
+
+        if (string == null) return false;
+        try{
+            Double.parseDouble(string);
+            return true;
+        }catch(NumberFormatException e){
+            return false;
+        }
     }
 }

@@ -64,7 +64,6 @@ public class GUIUtils{
                 option_meta.setLore(lore);
             }
             option_Item.setItemMeta(option_meta);
-
         }
 
         //make enable button

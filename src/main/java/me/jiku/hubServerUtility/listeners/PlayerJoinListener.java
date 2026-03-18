@@ -18,24 +18,28 @@ public class PlayerJoinListener implements Listener{
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
 
-        plugin.reloadConfig();
-
         Player player = e.getPlayer();
 
         boolean init_spawn_setting = plugin.getConfig().getBoolean("init-spawn-setting");
 
         if(init_spawn_setting == true){
 
-            float posX = (float) plugin.getConfig().getDouble("init-spawn-posX");
-            float posY = (float) plugin.getConfig().getDouble("init-spawn-posY");
-            float posZ = (float) plugin.getConfig().getDouble("init-spawn-posZ");
-            float yaw = (float) plugin.getConfig().getDouble("init-spawn-yaw");
-            float pitch = (float) plugin.getConfig().getDouble("init-spawn-pitch");
-
-            Location init_spawn_loc = new Location(player.getWorld(), posX, posY, posZ, yaw, pitch);
-
-            player.teleport(init_spawn_loc);
+            tpInitialSpawn(player);
 
         }
+    }
+
+    public void tpInitialSpawn(Player player){
+
+        float posX = (float) plugin.getConfig().getDouble("init-spawn-posX");
+        float posY = (float) plugin.getConfig().getDouble("init-spawn-posY");
+        float posZ = (float) plugin.getConfig().getDouble("init-spawn-posZ");
+        float yaw = (float) plugin.getConfig().getDouble("init-spawn-yaw");
+        float pitch = (float) plugin.getConfig().getDouble("init-spawn-pitch");
+
+        Location init_spawn_loc = new Location(player.getWorld(), posX, posY, posZ, yaw, pitch);
+
+        player.teleport(init_spawn_loc);
+
     }
 }
