@@ -2,6 +2,7 @@ package me.jiku.hubServerUtility.commands;
 
 import me.jiku.hubServerUtility.HubServerUtility;
 import me.jiku.hubServerUtility.utlis.GUIUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,6 +24,7 @@ public class HSUCommand implements CommandExecutor{
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String[] args){
 
         int custom_Spawn_Args_Size = 6;
+        var config = plugin.getConfig();
 
         if(sender instanceof Player player){
 
@@ -63,14 +65,33 @@ public class HSUCommand implements CommandExecutor{
                     double transPitch = Math.round(pitch * 10 ) / 10.0;
 
                     setConfigInitialSpawn(player, transX, transY, transZ, transYaw, transPitch);
+
                 }else{
                     player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
+                }
+
+                if(args.length == 2){
+                    switch(args[1]){
+                        case "true":
+                            player.sendMessage(ChatColor.GREEN + "Option was Enabled!");
+                            config.set("init-spawn-setting", true);
+                            plugin.saveConfig();
+                            break;
+                        case "false":
+                            player.sendMessage(ChatColor.RED + "Option was Disabled!");
+                            config.set("init-spawn-setting", false);
+                            plugin.saveConfig();
+                            break;
+                        default:
+                            player.sendMessage("You can select option, true of false");
+                            break;
+
+                    }
                 }
             }
         }
         return true;
-        }
-
+    }
 
     public void initialSpawn(Player player){
 
