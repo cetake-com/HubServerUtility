@@ -66,7 +66,7 @@ public class HSUCommand implements CommandExecutor{
 
                     setConfigInitialSpawn(player, transX, transY, transZ, transYaw, transPitch);
 
-                }else{
+                }else if(args.length > 2){
                     player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
                 }
 
