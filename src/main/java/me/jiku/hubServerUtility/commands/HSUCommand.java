@@ -36,7 +36,7 @@ public class HSUCommand implements CommandExecutor{
                 }
             }else if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
 
-                    if(args.length == custom_Spawn_Args_Size){
+                if(args.length == custom_Spawn_Args_Size){
 
                     ArrayList<Double> coordinateList = new ArrayList<>();
 
@@ -63,14 +63,13 @@ public class HSUCommand implements CommandExecutor{
                     double transPitch = Math.round(pitch * 10 ) / 10.0;
 
                     setConfigInitialSpawn(player, transX, transY, transZ, transYaw, transPitch);
-                    }else{
-                        player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
-                    }
+                }else{
+                    player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
+                }
             }
-            }
+        }
         return true;
         }
-
 
 
     public void initialSpawn(Player player){
