@@ -31,32 +31,40 @@ public class HSUCommand implements CommandExecutor{
             if(args.length == 1){
                 if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
 
-                    Location loc = player.getLocation();
+                    initialSpawn(player);
 
-                    double getX = loc.getX();
-                    double getY = loc.getY();
-                    double getZ = loc.getZ();
-                    double getYaw = loc.getYaw();
-                    double getPitch = loc.getPitch();
-
-                    double transX = Math.round(getX * 10) / 10.0;
-                    double transY = Math.round(getY * 10) / 10.0;
-                    double transZ = Math.round(getZ * 10) / 10.0;
-                    double transYaw = Math.round(getYaw * 10) / 10.0;
-                    double transPitch = Math.round(getPitch * 10) / 10.0;
-
-                    config.set("init-spawn-posX", transX);
-                    config.set("init-spawn-posY", transY);
-                    config.set("init-spawn-posZ", transZ);
-                    config.set("init-spawn-yaw", transYaw);
-                    config.set("init-spawn-pitch", transPitch);
-
-                    player.sendMessage("Coordinates saved successfully");
-
-                    plugin.saveConfig();
                 }
             }
         }
         return true;
+    }
+
+    public void initialSpawn(Player player){
+
+        var config = plugin.getConfig();
+
+        Location loc = player.getLocation();
+
+        double getX = loc.getX();
+        double getY = loc.getY();
+        double getZ = loc.getZ();
+        double getYaw = loc.getYaw();
+        double getPitch = loc.getPitch();
+
+        double transX = Math.round(getX * 10) / 10.0;
+        double transY = Math.round(getY * 10) / 10.0;
+        double transZ = Math.round(getZ * 10) / 10.0;
+        double transYaw = Math.round(getYaw * 10) / 10.0;
+        double transPitch = Math.round(getPitch * 10) / 10.0;
+
+        config.set("init-spawn-posX", transX);
+        config.set("init-spawn-posY", transY);
+        config.set("init-spawn-posZ", transZ);
+        config.set("init-spawn-yaw", transYaw);
+        config.set("init-spawn-pitch", transPitch);
+
+        player.sendMessage("Coordinates saved successfully");
+
+        plugin.saveConfig();
     }
 }
