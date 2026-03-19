@@ -43,6 +43,9 @@ public class InventoryClickListener implements Listener{
                 case OAK_SIGN:
                     GUIUtils.openOptionMenu(player, Material.OAK_SIGN);
                     break;
+                case RED_BED:
+                    GUIUtils.openOptionMenu(player, Material.RED_BED);
+                    break;
             }
 
         }else if(e.getView().getTitle().equalsIgnoreCase(OPTIONMENU)){
@@ -76,6 +79,21 @@ public class InventoryClickListener implements Listener{
                     case RED_CONCRETE:
                         player.sendMessage(ChatColor.RED + "Option was Disabled!");
                         config.set("can-edit-sign", false);
+                        plugin.saveConfig();
+                        GUIUtils.openMainMenu(player);
+                        break;
+                }
+            }else if(e.getClickedInventory().contains(Material.RED_BED)){
+                switch(e.getCurrentItem().getType()){
+                    case GREEN_CONCRETE:
+                        player.sendMessage(ChatColor.GREEN + "Option was Enabled!");
+                        config.set("can-change-spawn-point", true);
+                        plugin.saveConfig();
+                        GUIUtils.openMainMenu(player);
+                        break;
+                    case RED_CONCRETE:
+                        player.sendMessage(ChatColor.RED + "Option was Disabled!");
+                        config.set("can-change-spawn-point", false);
                         plugin.saveConfig();
                         GUIUtils.openMainMenu(player);
                         break;

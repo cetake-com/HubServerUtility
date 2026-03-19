@@ -4,6 +4,7 @@ import me.jiku.hubServerUtility.HubServerUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -39,8 +40,14 @@ public class GUIUtils{
         edit_sign_meta.setDisplayName("Can Edit Sign");
         edit_sign.setItemMeta(edit_sign_meta);
 
+        ItemStack change_spawn_point = new ItemStack(Material.RED_BED);
+        ItemMeta change_spawn_point_meta = change_spawn_point.getItemMeta();
+        change_spawn_point_meta.setDisplayName("Can Change Spawn Point with Bed");
+        change_spawn_point.setItemMeta(change_spawn_point_meta);
+
         main_menu.setItem(0, init_spawn_pos);
         main_menu.setItem(1, edit_sign);
+        main_menu.setItem(2, change_spawn_point);
 
         player.openInventory(main_menu);
 
@@ -66,6 +73,11 @@ public class GUIUtils{
                 String ces_setting_name = "Can Edit Sign";
                 String ces_config_setting_name = "can-edit-sign";
                 getSettingStatus(option_Item, option_meta, ces_setting_name, ces_config_setting_name);
+                break;
+            case RED_BED:
+                String ccs_setting_name = "Can Change Spawn Point with Bed";
+                String ccs_config_setting_name = "can-change-spawn-point";
+                getSettingStatus(option_Item, option_meta, ccs_setting_name, ccs_config_setting_name);
                 break;
         }
 
