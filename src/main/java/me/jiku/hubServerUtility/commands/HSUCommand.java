@@ -36,9 +36,9 @@ public class HSUCommand implements CommandExecutor{
                 if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
                     initialSpawn(player);
                 }
-            }else if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
+            }else if(args.length == custom_Spawn_Args_Size){
 
-                if(args.length == custom_Spawn_Args_Size){
+                if(args[0].equalsIgnoreCase("initialspawn") || args[0].equalsIgnoreCase("is")){
 
                     ArrayList<Double> coordinateList = new ArrayList<>();
 

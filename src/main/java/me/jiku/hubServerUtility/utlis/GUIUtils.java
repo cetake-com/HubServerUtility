@@ -53,17 +53,10 @@ public class GUIUtils{
 
         //if you added setting, add item
         if(option == Material.ENDER_EYE){
-            option_meta.setDisplayName("Initial spawn position");
+            String setting_name = "Initial spawn position";
+            String config_setting_name = "init-spawn-setting";
 
-            List<String> lore =new ArrayList<>();
-            if(Bukkit.getPluginManager().getPlugin("HubServerUtility").getConfig().getBoolean("init-spawn-setting") == true){
-                lore.add(ChatColor.GREEN + "Now Enable");
-                option_meta.setLore(lore);
-            }else{
-                lore.add(ChatColor.RED + "Now Disable");
-                option_meta.setLore(lore);
-            }
-            option_Item.setItemMeta(option_meta);
+            settingStatus(option_Item, option_meta, setting_name, config_setting_name);
         }
 
         //make enable button
@@ -83,5 +76,20 @@ public class GUIUtils{
         option_menu.setItem(8, disable);
 
         player.openInventory(option_menu);
+    }
+
+    public static void settingStatus(ItemStack option_item, ItemMeta option_meta, String setting_name, String config_setting_name){
+
+        option_meta.setDisplayName(setting_name);
+        List<String> lore = new ArrayList<>();
+
+        if(Bukkit.getPluginManager().getPlugin("HubServerUtility").getConfig().getBoolean(config_setting_name) == true){
+            lore.add(ChatColor.GREEN + "Now Enable");
+            option_meta.setLore(lore);
+        }else{
+            lore.add(ChatColor.RED + "Now Disable");
+            option_meta.setLore(lore);
+        }
+        option_item.setItemMeta(option_meta);
     }
 }
