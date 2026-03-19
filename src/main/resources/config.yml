@@ -1,8 +1,11 @@
-#Select true or false (Default false)
+#Settings
 init-spawn-setting: false
-#coordinate and rotation (float value)
+can-edit-sign: true
+
+#Initial spawn position, coordinate and rotation (float value)
 init-spawn-posX: '0.0'
 init-spawn-posY: '0.0'
 init-spawn-posZ: '0.0'
 init-spawn-yaw: '0.0'
 init-spawn-pitch: '0.0'
+
