@@ -14,10 +14,10 @@ import java.util.List;
 
 public class GUIUtils{
 
-    private final HubServerUtility plugin;
-
     public static final String MAINMENU = "Main Menu";
     public static final String OPTIONMENU = "Option Menu";
+
+    private final HubServerUtility plugin;
 
     public GUIUtils(HubServerUtility plugin){
         this.plugin = plugin;
@@ -31,10 +31,16 @@ public class GUIUtils{
 
         ItemStack init_spawn_pos = new ItemStack(Material.ENDER_EYE);
         ItemMeta init_spawnp_pos_meta = init_spawn_pos.getItemMeta();
-        init_spawnp_pos_meta.setDisplayName("Initial spawn point");
+        init_spawnp_pos_meta.setDisplayName("Initial Spawn Point");
         init_spawn_pos.setItemMeta(init_spawnp_pos_meta);
 
+        ItemStack edit_sign = new ItemStack(Material.OAK_SIGN);
+        ItemMeta edit_sign_meta = edit_sign.getItemMeta();
+        edit_sign_meta.setDisplayName("Can Edit Sign");
+        edit_sign.setItemMeta(edit_sign_meta);
+
         main_menu.setItem(0, init_spawn_pos);
+        main_menu.setItem(1, edit_sign);
 
         player.openInventory(main_menu);
 
@@ -49,15 +55,18 @@ public class GUIUtils{
         ItemStack option_Item = new ItemStack(option);
         ItemMeta option_meta = option_Item.getItemMeta();
 
-        //if you wanted option, make itemstack.
-
         //if you added setting, add item
         switch(option){
             case ENDER_EYE:
-            String setting_name = "Initial spawn position";
-            String config_setting_name = "init-spawn-setting";
-            settingStatus(option_Item, option_meta, setting_name, config_setting_name);
-            break;
+                String isp_setting_name = "Initial Spawn Position";
+                String isp_config_setting_name = "init-spawn-setting";
+                getSettingStatus(option_Item, option_meta, isp_setting_name, isp_config_setting_name);
+                break;
+            case OAK_SIGN:
+                String ces_setting_name = "Can Edit Sign";
+                String ces_config_setting_name = "can-edit-sign";
+                getSettingStatus(option_Item, option_meta, ces_setting_name, ces_config_setting_name);
+                break;
         }
 
         //make enable button
@@ -79,7 +88,7 @@ public class GUIUtils{
         player.openInventory(option_menu);
     }
 
-    public static void settingStatus(ItemStack option_item, ItemMeta option_meta, String setting_name, String config_setting_name){
+    public static void getSettingStatus(ItemStack option_item, ItemMeta option_meta, String setting_name, String config_setting_name){
 
         option_meta.setDisplayName(setting_name);
         List<String> lore = new ArrayList<>();
