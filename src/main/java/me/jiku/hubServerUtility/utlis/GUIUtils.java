@@ -52,11 +52,12 @@ public class GUIUtils{
         //if you wanted option, make itemstack.
 
         //if you added setting, add item
-        if(option == Material.ENDER_EYE){
+        switch(option){
+            case ENDER_EYE:
             String setting_name = "Initial spawn position";
             String config_setting_name = "init-spawn-setting";
-
             settingStatus(option_Item, option_meta, setting_name, config_setting_name);
+            break;
         }
 
         //make enable button
