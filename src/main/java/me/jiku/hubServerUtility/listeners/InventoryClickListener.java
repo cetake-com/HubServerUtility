@@ -54,11 +54,13 @@ public class InventoryClickListener implements Listener{
                         player.sendMessage(ChatColor.GREEN + "Option was Enabled!");
                         config.set("init-spawn-setting", true);
                         plugin.saveConfig();
+                        GUIUtils.openMainMenu(player);
                         break;
                     case RED_CONCRETE:
                         player.sendMessage(ChatColor.RED + "Option was Disabled!");
                         config.set("init-spawn-setting", false);
                         plugin.saveConfig();
+                        GUIUtils.openMainMenu(player);
                         break;
                 }
             }
