@@ -70,24 +70,6 @@ public class HSUCommand implements CommandExecutor{
                     player.sendMessage("Please enter the command correctly. Ex) /hsu is x y z yaw pitch");
                 }
 
-                if(args.length == 2){
-                    switch(args[1]){
-                        case "true":
-                            player.sendMessage(ChatColor.GREEN + "Option was Enabled!");
-                            config.set("init-spawn-setting", true);
-                            plugin.saveConfig();
-                            break;
-                        case "false":
-                            player.sendMessage(ChatColor.RED + "Option was Disabled!");
-                            config.set("init-spawn-setting", false);
-                            plugin.saveConfig();
-                            break;
-                        default:
-                            player.sendMessage("You can select option, true of false");
-                            break;
-
-                    }
-                }
             }
         }
         return true;
