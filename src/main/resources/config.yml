@@ -1,6 +1,6 @@
 #Settings
 init-spawn-setting: false
-can-edit-sign: true
+can-edit-sign: false
 can-change-spawn-point: false
 
 #Initial spawn position, coordinate and rotation (float value)
