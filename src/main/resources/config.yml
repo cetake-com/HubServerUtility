@@ -2,6 +2,7 @@
 init-spawn-setting: false
 can-edit-sign: false
 can-change-spawn-point: false
+can-edit-item-in-flame: false
 
 #Initial spawn position, coordinate and rotation (float value)
 init-spawn-posX: '0.0'

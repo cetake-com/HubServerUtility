@@ -18,6 +18,8 @@ public class GUIUtils{
     public static final String MAINMENU = "Main Menu";
     public static final String OPTIONMENU = "Option Menu";
 
+    private static ArrayList<ItemStack> settingList = new ArrayList<>();
+
     private final HubServerUtility plugin;
 
     public GUIUtils(HubServerUtility plugin){
@@ -34,20 +36,30 @@ public class GUIUtils{
         ItemMeta init_spawnp_pos_meta = init_spawn_pos.getItemMeta();
         init_spawnp_pos_meta.setDisplayName("Initial Spawn Point");
         init_spawn_pos.setItemMeta(init_spawnp_pos_meta);
+        settingList.add(init_spawn_pos);
 
         ItemStack edit_sign = new ItemStack(Material.OAK_SIGN);
         ItemMeta edit_sign_meta = edit_sign.getItemMeta();
         edit_sign_meta.setDisplayName("Can Edit Sign");
         edit_sign.setItemMeta(edit_sign_meta);
+        settingList.add(edit_sign);
 
         ItemStack change_spawn_point = new ItemStack(Material.RED_BED);
         ItemMeta change_spawn_point_meta = change_spawn_point.getItemMeta();
         change_spawn_point_meta.setDisplayName("Can Change Spawn Point with Bed");
         change_spawn_point.setItemMeta(change_spawn_point_meta);
+        settingList.add(change_spawn_point);
+
+        ItemStack can_edit_item = new ItemStack(Material.ITEM_FRAME);
+        ItemMeta can_edit_item_meta = can_edit_item.getItemMeta();
+        can_edit_item_meta.setDisplayName("Can Edit Item in Item Flame");
+        can_edit_item.setItemMeta(can_edit_item_meta);
+        settingList.add(can_edit_item);
 
         main_menu.setItem(0, init_spawn_pos);
         main_menu.setItem(1, edit_sign);
         main_menu.setItem(2, change_spawn_point);
+        main_menu.setItem(3, can_edit_item);
 
         player.openInventory(main_menu);
 
@@ -79,6 +91,10 @@ public class GUIUtils{
                 String ccs_config_setting_name = "can-change-spawn-point";
                 getSettingStatus(option_Item, option_meta, ccs_setting_name, ccs_config_setting_name);
                 break;
+            case ITEM_FRAME:
+                String cri_setting_name = "Can Edit Item in Item Flame";
+                String cri_config_setting_name = "can-edit-item-in-flame";
+                getSettingStatus(option_Item, option_meta, cri_setting_name, cri_config_setting_name);
         }
 
         //make enable button
@@ -102,10 +118,11 @@ public class GUIUtils{
 
     public static void getSettingStatus(ItemStack option_item, ItemMeta option_meta, String setting_name, String config_setting_name){
 
+        var config = Bukkit.getPluginManager().getPlugin("HubServerUtility").getConfig();
         option_meta.setDisplayName(setting_name);
         List<String> lore = new ArrayList<>();
 
-        if(Bukkit.getPluginManager().getPlugin("HubServerUtility").getConfig().getBoolean(config_setting_name) == true){
+        if(config.getBoolean(config_setting_name) == true){
             lore.add(ChatColor.GREEN + "Now Enable");
             option_meta.setLore(lore);
         }else{
