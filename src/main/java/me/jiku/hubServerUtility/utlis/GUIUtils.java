@@ -69,28 +69,31 @@ public class GUIUtils{
 
         ItemStack option_Item = new ItemStack(option);
         ItemMeta option_meta = option_Item.getItemMeta();
+        String setting_name;
+        String config_setting_name;
 
         //if you added setting, add item
         switch(option){
             case ENDER_EYE:
-                String isp_setting_name = "Initial Spawn Position";
-                String isp_config_setting_name = "init-spawn-setting";
-                getSettingStatus(option_Item, option_meta, isp_setting_name, isp_config_setting_name);
+                setting_name = "Initial Spawn Position";
+                config_setting_name = "init-spawn-setting";
+                getSettingStatus(option_Item, option_meta, setting_name, config_setting_name);
                 break;
             case OAK_SIGN:
-                String ces_setting_name = "Can Edit Sign";
-                String ces_config_setting_name = "can-edit-sign";
-                getSettingStatus(option_Item, option_meta, ces_setting_name, ces_config_setting_name);
+                setting_name = "Can Edit Sign";
+                config_setting_name = "can-edit-sign";
+                getSettingStatus(option_Item, option_meta, setting_name, config_setting_name);
                 break;
             case RED_BED:
-                String ccs_setting_name = "Can Change Spawn Point with Bed";
-                String ccs_config_setting_name = "can-change-spawn-point";
-                getSettingStatus(option_Item, option_meta, ccs_setting_name, ccs_config_setting_name);
+                setting_name = "Can Change Spawn Point with Bed";
+                config_setting_name = "can-change-spawn-point";
+                getSettingStatus(option_Item, option_meta, setting_name, config_setting_name);
                 break;
             case ITEM_FRAME:
-                String cri_setting_name = "Can Edit Item in Item Flame";
-                String cri_config_setting_name = "can-edit-item-in-flame";
-                getSettingStatus(option_Item, option_meta, cri_setting_name, cri_config_setting_name);
+                setting_name = "Can Edit Item in Item Flame";
+                config_setting_name = "can-edit-item-in-flame";
+                getSettingStatus(option_Item, option_meta, setting_name, config_setting_name);
+                break;
         }
 
         //make enable button
