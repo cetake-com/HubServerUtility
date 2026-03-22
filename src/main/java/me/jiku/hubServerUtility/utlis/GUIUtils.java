@@ -36,25 +36,21 @@ public class GUIUtils{
         ItemMeta init_spawnp_pos_meta = init_spawn_pos.getItemMeta();
         init_spawnp_pos_meta.setDisplayName("Initial Spawn Point");
         init_spawn_pos.setItemMeta(init_spawnp_pos_meta);
-        settingList.add(init_spawn_pos);
 
         ItemStack edit_sign = new ItemStack(Material.OAK_SIGN);
         ItemMeta edit_sign_meta = edit_sign.getItemMeta();
         edit_sign_meta.setDisplayName("Can Edit Sign");
         edit_sign.setItemMeta(edit_sign_meta);
-        settingList.add(edit_sign);
 
         ItemStack change_spawn_point = new ItemStack(Material.RED_BED);
         ItemMeta change_spawn_point_meta = change_spawn_point.getItemMeta();
         change_spawn_point_meta.setDisplayName("Can Change Spawn Point with Bed");
         change_spawn_point.setItemMeta(change_spawn_point_meta);
-        settingList.add(change_spawn_point);
 
         ItemStack can_edit_item = new ItemStack(Material.ITEM_FRAME);
         ItemMeta can_edit_item_meta = can_edit_item.getItemMeta();
         can_edit_item_meta.setDisplayName("Can Edit Item in Item Flame");
         can_edit_item.setItemMeta(can_edit_item_meta);
-        settingList.add(can_edit_item);
 
         main_menu.setItem(0, init_spawn_pos);
         main_menu.setItem(1, edit_sign);
